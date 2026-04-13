@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body%}
+<div class="form-container">
+
+
+  <h1>Create study group</h1>
+
+  <form method="post">
+    <div>
+    {{ form.name.label }} {{ form.name }}
+    </div>
+    <div>
+    {{ form.addMember.label }}
+    {{ form.addMember }}
+    </div>
+    <div>
+    {{ form.submit }}
+    {{ form.submit2 }}
+    </div>
+  </form>
+
+<div>
+    Studygroup consists of {{ studygroup }}
+</div>
+
+</div>
+
+
+{% endblock body%}

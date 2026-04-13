@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="form-container">
+
+
+<h2>Schedule a new Studysession</h2>
+
+<form method="POST">
+    <div>
+    {{ form.date.label }} {{ form.date() }} <br>
+    {{ form.time.label }} {{ form.time() }} <br>
+    {{ form.topic.label }} {{ form.topic() }} <br>
+    {{ form.submit() }}
+    {{ form.done() }}
+    </div>
+</form>
+
+<h3>Planned Sessions</h3>
+<ul>
+{% for session in sessions %}
+    <li>{{ session.date }} at {{ session.time }} - {{ session.topic }}</li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}

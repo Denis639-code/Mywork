@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="my-container" >
+<h1>Shared Calendar for Your Study Groups</h1>
+
+<table border="1">
+  <tr>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Topic</th>
+    <th>Name</th>
+    <th>Members</th>
+  </tr>
+  {% for studysession in studysessions %}
+  <tr>
+    <td>{{ studysession.date }}</td>
+    <td>{{ studysession.time }}</td>
+    <td>{{ studysession.topic }}</td>
+    <td>{{ studysession.studygroup_name }}</td>
+    <td>{{ studysession.studygroup_members | join(', ') }}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+
+
+{% endblock %}

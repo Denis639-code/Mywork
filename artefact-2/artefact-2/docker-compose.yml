@@ -1,0 +1,83 @@
+services:
+  ui:
+    build: ./ui_service
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+    depends_on:
+      db:
+        condition: service_healthy
+
+  users:
+    build: ./user_service
+    ports:
+      - "5001:5000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@:5432/postgres
+    depends_on:
+      db:
+        condition: service_healthy
+
+  studygroups:
+    build: ./studygroup_service
+    ports:
+      - "5002:5000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+    depends_on:
+      db:
+        condition: service_healthy
+
+  studysessions:
+    build: ./studysession_service/
+    ports:
+      - "5003:5000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+    depends_on:
+      db:
+        condition: service_healthy
+
+  todos:
+    build: ./todo_service/
+    ports:
+      - "5004:5000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db-todo:5432/postgres
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db-todo:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  db-user:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5        
+
+volumes:
+  pgdata:
+    driver: locald

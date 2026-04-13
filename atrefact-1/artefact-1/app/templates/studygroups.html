@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="my-container" >
+<h1>Your studygroups</h1>
+
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Members</th>
+    <th>Plan new studysession !</th>
+  </tr>
+  {% for studygroup in studygroups %}
+  <tr>
+    <td>{{ studygroup.name }}</td>
+    <td>{{ studygroup.members | join(', ') }}</td>
+    <td><a class="button" href={{ url_for("create_studysession", studygroup_id=studygroup.id) }}>Plan new studysession !</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<a class="button" href={{ url_for("create_studygroup") }}>Create new studygroup!</a>
+
+
+</div>
+{% endblock %}
+

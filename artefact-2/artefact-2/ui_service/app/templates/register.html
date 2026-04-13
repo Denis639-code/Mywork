@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<div class="form-container">
+
+
+  <h1>Sign Up</h1>
+
+  <form method="post">
+    <div>
+    {{ form.name.label }}
+    {{ form.name }}
+    </div>
+    <div>
+    {{ form.email.label }}
+    {{ form.email }}
+    </div>
+    <div>
+    {{ form.password.label }}
+    {{ form.password }}
+    </div>
+    <div>
+    {{ form.confirm.label }}
+    {{ form.confirm }}
+    </div>
+    <div>
+    {{ form.submit }}
+    </div>
+  </form>
+</div>
+{% endblock body%}

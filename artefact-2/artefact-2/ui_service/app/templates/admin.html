@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="my-container">
+
+<h1>Admin Panel</h1>
+
+<h2> Studygroups </h2>
+<table class="center" border="1">
+  <tr>
+    <th>Name</th>
+    <th>Members</th>
+    <th>Delete studygroup</th>
+  </tr>
+  {% for studygroup in studygroups %}
+  <tr>
+    <td>{{ studygroup.name }}</td>
+    <td>{{ studygroup.members | join(', ') }}</td>
+    <td><a class="button" href={{ url_for("delete_studygroup", studygroup_id=studygroup.id) }}>Delete studygroup</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2> Users </h2>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Delete user</th>
+  </tr>
+  {% for user in users %}
+  <tr>
+    <td>{{ user.name }}</td>
+    <td><a class="button" href={{ url_for("delete_user", user_id=user.id) }}>Delete user</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2> Todos </h2>
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Delete todo</th>
+  </tr>
+  {% for todo in todos %}
+  <tr>
+    <td>{{ todo.title }}</td>
+    <td><a class="button" href={{ url_for("delete_todo", todo_id=todo.id) }}>Delete todo</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2> Studysessions </h2>
+<table border="1">
+  <tr>
+    <th>id</th>
+    <th>Delete studysession</th>
+  </tr>
+  {% for studysession in studysessions %}
+  <tr>
+    <td>{{ studysession.id }}</td>
+    <td><a class="button" href={{ url_for("delete_studysession", studysession_id=studysession.id) }}>Delete studysession</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+</div>
+{% endblock %}
